@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}About & Methodology &mdash; TruthLens{% endblock %}
+
+{% block content %}
+<div class="site-container" style="padding-top: 40px; padding-bottom: 64px;">
+  
+  <div style="max-width: 820px; margin: 0 auto;">
+    <span class="section-eyebrow">EDITORIAL MISSION</span>
+    <h1 class="section-heading" style="margin-bottom: 16px;">Look Beyond the Headline.</h1>
+    <p style="font-size: 18px; color: var(--muted-text); line-height: 1.6; margin-bottom: 32px;">
+      TruthLens was built on a simple conviction: technology should help people investigate news critically, 
+      not dictate what they must believe.
+    </p>
+
+    <div style="background: var(--pure-white); border: 1px solid var(--divider); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 32px;">
+      <h2 style="font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: var(--deep-navy); margin-bottom: 14px;">
+        Our Core Philosophy
+      </h2>
+      <p style="font-size: 15px; color: var(--primary-ink); line-height: 1.7; margin-bottom: 16px;">
+        In an information ecosystem filled with sensationalism, partisan framing, and automated fabrication, 
+        readers are frequently caught between conflicting narratives. Many algorithmic solutions act as black-box arbiters 
+        that offer opaque labels without justification.
+      </p>
+      <p style="font-size: 15px; color: var(--primary-ink); line-height: 1.7;">
+        TruthLens takes an editorial, transparent approach. We combine evaluated statistical language modeling with 
+        transparent term attribution and external news corroboration, giving readers the necessary tools to make an informed decision.
+      </p>
+    </div>
+
+    <div style="background: var(--pure-white); border: 1px solid var(--divider); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 32px;">
+      <h2 style="font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: var(--deep-navy); margin-bottom: 14px;">
+        The Methodology Behind TruthLens
+      </h2>
+      <div style="display: flex; flex-direction: column; gap: 20px; font-size: 15px; line-height: 1.6;">
+        <div>
+          <strong style="color: var(--deep-navy); font-size: 16px;">1. Statistical Pattern Recognition</strong>
+          <p style="color: var(--muted-text); margin-top: 4px;">
+            Our core machine learning model uses TF-IDF vectorization (unigrams and bigrams, sublinear term frequency) 
+            combined with an L2-regularized Logistic Regression classifier trained on over 45,000 verified and misleading reports. 
+            It identifies stylistic and lexical markers typical of trustworthy wire reporting versus deceptive articles.
+          </p>
+        </div>
+        <div>
+          <strong style="color: var(--deep-navy); font-size: 16px;">2. Transparent Explainability</strong>
+          <p style="color: var(--muted-text); margin-top: 4px;">
+            Unlike black-box neural networks, our pipeline provides linear coefficient explainability. 
+            We calculate the exact mathematical contribution of individual words and phrases in the submitted article, 
+            showing readers which linguistic patterns drove the model's assessment.
+          </p>
+        </div>
+        <div>
+          <strong style="color: var(--deep-navy); font-size: 16px;">3. External Evidence Corroboration</strong>
+          <p style="color: var(--muted-text); margin-top: 4px;">
+            Language patterns alone are never sufficient to judge truth. TruthLens extracts candidate factual claims 
+            and searches monitored public news feeds to cross-check whether reputable newsrooms have independently reported 
+            or debunked the story.
+          </p>
+        </div>
+        <div>
+          <strong style="color: var(--deep-navy); font-size: 16px;">4. Documented Uncertainty Bounds</strong>
+          <p style="color: var(--muted-text); margin-top: 4px;">
+            When an article falls into an ambiguous probability band (45% &ndash; 55%) or contains insufficient text, 
+            our system explicitly abstains by returning “Uncertain” rather than forcing an unsupported conclusion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 24px; background: var(--soft-teal); border: 1px solid rgba(20, 125, 120, 0.2); border-radius: var(--radius-md);">
+      <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 800; color: var(--teal-accent); margin-bottom: 8px;">
+        Designed for Humans First
+      </h3>
+      <p style="font-size: 14px; color: var(--primary-ink); line-height: 1.6;">
+        TruthLens does not claim omniscience. We provide calm, structured analysis to assist your judgment. 
+        Before accepting or sharing high-stakes news, always inspect original documents, verify dates, and check multiple independent publishers.
+      </p>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,649 @@
+{
+  "phases": {
+    "phase1_environment": {
+      "model_sha256": "2ebbdef8ebd1ff3a8660dcd4ccd3fa6cc633aedd80f16901444edda7377ce3ed",
+      "metadata_sha256": "9424b5839848e6966b3281a5a69c944033af0aff70fa1a40ecd016d8b356a461",
+      "model_loaded": true,
+      "metadata_loaded": true,
+      "single_load_check": true
+    },
+    "phase3_input_methods": {
+      "text": {
+        "empty": {
+          "status_code": 200,
+          "latency_sec": 0.008,
+          "has_error_message": false,
+          "has_result": false
+        },
+        "whitespace": {
+          "status_code": 200,
+          "latency_sec": 0.001,
+          "has_error_message": false,
+          "has_result": false
+        },
+        "too_short": {
+          "status_code": 200,
+          "latency_sec": 0.001,
+          "has_error_message": true,
+          "has_result": false
+        },
+        "normal_english": {
+          "status_code": 200,
+          "latency_sec": 0.289,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "unicode_special": {
+          "status_code": 200,
+          "latency_sec": 0.772,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "malayalam_native": {
+          "status_code": 200,
+          "latency_sec": 1.663,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "hindi_native": {
+          "status_code": 200,
+          "latency_sec": 1.216,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "tamil_native": {
+          "status_code": 200,
+          "latency_sec": 1.869,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "mixed_language": {
+          "status_code": 200,
+          "latency_sec": 1.478,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "max_length_boundary": {
+          "status_code": 200,
+          "latency_sec": 1.785,
+          "has_error_message": false,
+          "has_result": true
+        },
+        "exceeding_max_length": {
+          "status_code": 200,
+          "latency_sec": 1.356,
+          "has_error_message": false,
+          "has_result": true
+        }
+      },
+      "pdf": {
+        "valid_pdf": {
+          "status_code": 200,
+          "json": {
+            "char_count": 130,
+            "extracted_text": "Page 1 News Report\nGlobal semiconductor manufacturing agreement signed between leading technology firms to stabilize supply chain.",
+            "file_type": "pdf",
+            "filename": "test_valid.pdf",
+            "success": true,
+            "word_count": 17
+          },
+          "latency_sec": 0.004
+        },
+        "multipage_pdf": {
+          "status_code": 200,
+          "json": {
+            "char_count": 638,
+            "extracted_text": "Page 1 News Report\nMulti-page comprehensive investigation into renewable energy infrastructure and solar battery developments.\n\nPage 2 News Report\nMulti-page comprehensive investigation into renewable energy infrastructure and solar battery developments.\n\nPage 3 News Report\nMulti-page comprehensive investigation into renewable energy infrastructure and solar battery developments.\n\nPage 4 News Report\nMulti-page comprehensive investigation into renewable energy infrastructure and solar battery developments.\n\nPage 5 News Report\nMulti-page comprehensive investigation into renewable energy infrastructure and solar battery developments.",
+            "file_type": "pdf",
+            "filename": "test_multipage.pdf",
+            "success": true,
+            "word_count": 75
+          },
+          "latency_sec": 0.005
+        },
+        "exceeding_pages_pdf": {
+          "status_code": 200,
+          "json": {
+            "char_count": 1054,
+            "extracted_text": "Page 1 News Report\nVery long document exceeding standard page limit.\n\nPage 2 News Report\nVery long document exceeding standard page limit.\n\nPage 3 News Report\nVery long document exceeding standard page limit.\n\nPage 4 News Report\nVery long document exceeding standard page limit.\n\nPage 5 News Report\nVery long document exceeding standard page limit.\n\nPage 6 News Report\nVery long document exceeding standard page limit.\n\nPage 7 News Report\nVery long document exceeding standard page limit.\n\nPage 8 News Report\nVery long document exceeding standard page limit.\n\nPage 9 News Report\nVery long document exceeding standard page limit.\n\nPage 10 News Report\nVery long document exceeding standard page limit.\n\nPage 11 News Report\nVery long document exceeding standard page limit.\n\nPage 12 News Report\nVery long document exceeding standard page limit.\n\nPage 13 News Report\nVery long document exceeding standard page limit.\n\nPage 14 News Report\nVery long document exceeding standard page limit.\n\nPage 15 News Report\nVery long document exceeding standard page limit.",
+            "file_type": "pdf",
+            "filename": "test_exceed.pdf",
+            "success": true,
+            "word_count": 165
+          },
+          "latency_sec": 0.01
+        },
+        "empty_pdf": {
+          "status_code": 422,
+          "json": {
+            "error": "Uploaded PDF file is corrupted or unreadable.",
+            "success": false
+          },
+          "latency_sec": 0.001
+        },
+        "corrupted_pdf": {
+          "status_code": 422,
+          "json": {
+            "error": "Uploaded PDF file is corrupted or unreadable.",
+            "success": false
+          },
+          "latency_sec": 0.001
+        },
+        "fake_ext_pdf": {
+          "status_code": 422,
+          "json": {
+            "error": "Uploaded PDF file is corrupted or unreadable.",
+            "success": false
+          },
+          "latency_sec": 0.001
+        }
+      },
+      "image": {
+        "valid_image": {
+          "status_code": 200,
+          "json": {
+            "char_count": 85,
+            "extracted_text": "Federal Reserve maintains benchmark interest rate following quarterlyeconomic review.",
+            "file_type": "image",
+            "filename": "test_news.png",
+            "success": true,
+            "word_count": 9
+          },
+          "latency_sec": 0.723
+        },
+        "blank_image": {
+          "status_code": 422,
+          "json": {
+            "error": "No readable text could be recognized in the uploaded image. Ensure the image is clear, high-contrast, and contains visible headlines or paragraphs.",
+            "success": false
+          },
+          "latency_sec": 0.077
+        },
+        "corrupted_image": {
+          "status_code": 422,
+          "json": {
+            "error": "Uploaded file is not a valid or readable image. Supported formats: JPG, JPEG, PNG, WEBP.",
+            "success": false
+          },
+          "latency_sec": 0.053
+        },
+        "unsupported_bmp": {
+          "status_code": 400,
+          "json": {
+            "error": "Invalid image format. Supported formats: PNG, JPG, JPEG, WebP.",
+            "success": false
+          },
+          "latency_sec": 0.001
+        }
+      },
+      "video": {
+        "mp4_extract": {
+          "status_code": 400,
+          "rejected_properly": true,
+          "latency_sec": 0.001
+        },
+        "mov_extract": {
+          "status_code": 400,
+          "rejected_properly": true,
+          "latency_sec": 0.001
+        },
+        "mp4_analyze_file": {
+          "status_code": 200,
+          "rejected_properly": true,
+          "latency_sec": 0.001
+        }
+      }
+    },
+    "phase4_multilingual": {
+      "en": {
+        "language": "English",
+        "status_code": 200,
+        "latency_sec": 1.417,
+        "has_result": true,
+        "has_verdict": true
+      },
+      "ml": {
+        "language": "Malayalam",
+        "status_code": 200,
+        "latency_sec": 0.004,
+        "has_result": true,
+        "has_verdict": true
+      },
+      "hi": {
+        "language": "Hindi",
+        "status_code": 200,
+        "latency_sec": 0.004,
+        "has_result": true,
+        "has_verdict": true
+      },
+      "ta": {
+        "language": "Tamil",
+        "status_code": 200,
+        "latency_sec": 0.004,
+        "has_result": true,
+        "has_verdict": true
+      }
+    },
+    "phase5_model_eval": {
+      "total_samples": 20,
+      "binary_samples": 16,
+      "accuracy": 0.9375,
+      "precision": 1.0,
+      "recall": 0.875,
+      "f1_score": 0.9333,
+      "confusion_matrix": {
+        "TP": 7,
+        "FP": 0,
+        "TN": 8,
+        "FN": 1
+      },
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.125,
+      "eval_details": [
+        {
+          "claim": "Narendra Modi is the Prime Minister of India.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 1.274,
+          "category": "politics"
+        },
+        {
+          "claim": "Paris is the capital of France.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 0.867,
+          "category": "geography"
+        },
+        {
+          "claim": "Sundar Pichai is the CEO of Google and Alphabet.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 2.169,
+          "category": "business"
+        },
+        {
+          "claim": "Pinarayi Vijayan is the Chief Minister of Kerala.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 1.195,
+          "category": "regional_politics"
+        },
+        {
+          "claim": "NASA successfully launched the James Webb Space Telescope into orbit to observe deep space.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 1.086,
+          "category": "science"
+        },
+        {
+          "claim": "The Reserve Bank of India regulates monetary policy and currency circulation in India.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 0.946,
+          "category": "economics"
+        },
+        {
+          "claim": "Penicillin was discovered by Alexander Fleming as an antibiotic.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 0.984,
+          "category": "science_history"
+        },
+        {
+          "claim": "Tokyo is the host city that organized the 2020 Summer Olympic Games held in 2021.",
+          "ground_truth": "REAL",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 1.326,
+          "category": "sports"
+        },
+        {
+          "claim": "Drinking boiled garlic water cures coronavirus infection within 24 hours.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 0.774,
+          "category": "health_misinformation"
+        },
+        {
+          "claim": "NASA confirms Earth will plunge into complete darkness for six consecutive days due to planetary alignment.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 0.921,
+          "category": "viral_hoax"
+        },
+        {
+          "claim": "Elon Musk is the President of France.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 1.435,
+          "category": "politics_false"
+        },
+        {
+          "claim": "The Prime Minister of India was Cristiano Ronaldo.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 0.906,
+          "category": "fabricated_absurd"
+        },
+        {
+          "claim": "Government is installing 5G microchips inside currency notes to track bank accounts remotely.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 0.953,
+          "category": "financial_conspiracy"
+        },
+        {
+          "claim": "Sydney is the capital city of Australia.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 1.209,
+          "category": "common_misconception"
+        },
+        {
+          "claim": "Secret underground tunnels beneath city hospital where politicians harvest children blood.",
+          "ground_truth": "FAKE",
+          "prediction_label": "LIKELY FALSE",
+          "mapped_binary": "FAKE",
+          "confidence": 97.5,
+          "latency_sec": 0.63,
+          "category": "conspiracy"
+        },
+        {
+          "claim": "President of India declared a nuclear war over Russia this morning.",
+          "ground_truth": "FAKE",
+          "prediction_label": "CONFLICTING RESULTS",
+          "mapped_binary": "INCONCLUSIVE",
+          "confidence": 65.0,
+          "latency_sec": 1.004,
+          "category": "severe_hoax"
+        },
+        {
+          "claim": "Area Man Passionate Defender Of What He Imagines Constitution To Be.",
+          "ground_truth": "SATIRE_OPINION",
+          "prediction_label": "LIKELY TRUE",
+          "mapped_binary": "REAL",
+          "confidence": 96.0,
+          "latency_sec": 0.844,
+          "category": "satire"
+        },
+        {
+          "claim": "Chocolate ice cream is mathematically and universally proven to be the best flavor ever made.",
+          "ground_truth": "OPINION",
+          "prediction_label": "NOT YET VERIFIED",
+          "mapped_binary": "INCONCLUSIVE",
+          "confidence": 65.0,
+          "latency_sec": 0.705,
+          "category": "opinion"
+        },
+        {
+          "claim": "Recent diplomatic developments may potentially indicate shifts in bilateral relations over coming quarters.",
+          "ground_truth": "AMBIGUOUS",
+          "prediction_label": "NOT YET VERIFIED",
+          "mapped_binary": "INCONCLUSIVE",
+          "confidence": 52.2,
+          "latency_sec": 1.084,
+          "category": "speculation"
+        },
+        {
+          "claim": "Local community center announces weekend gardening workshop for neighborhood residents.",
+          "ground_truth": "UNVERIFIED_LOCAL",
+          "prediction_label": "NOT YET VERIFIED",
+          "mapped_binary": "INCONCLUSIVE",
+          "confidence": 58.8,
+          "latency_sec": 1.241,
+          "category": "hyperlocal"
+        }
+      ],
+      "determinism_pass": true
+    },
+    "phase6_evidence": {
+      "sources_retrieved_count": 3,
+      "sources": [
+        {
+          "title": "Ceo Of Google And Alphabet &mdash; Official Governmental Record",
+          "publisher": "Official Government Records",
+          "url": "https://en.wikipedia.org/wiki/Ceo_Of_Google_And_Alphabet",
+          "valid_structure": true
+        },
+        {
+          "title": "Sundar Pichai &mdash; Official Biography",
+          "publisher": "Biographical Records",
+          "url": "https://en.wikipedia.org/wiki/Sundar_Pichai",
+          "valid_structure": true
+        },
+        {
+          "title": "Sundar Pichai: Google\u2019s Frontier Imperative, Compute Scarcity Dilemmas, Future AI Products and Businesses",
+          "publisher": "Big Technology | Alex Kantrowitz",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1JbHZDYmRzQ2VIeDdSc3liWjFqUWhlSXdSYU5hWU9fX0pVbk9wUGVqZGc5R2wybHN2cDI2YlV3Y2NWZ2FCNElJRGRoZ09GMEVxa2U5TEltWVJiV1lLQ1oyZElIb0lZcnhxNllnU3RUaExINV9URzVIVFNZdm8zdw?oc=5",
+          "valid_structure": true
+        }
+      ],
+      "all_citations_valid": true
+    },
+    "phase7_backend_api": {
+      "GET /": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.002
+      },
+      "GET /home": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.007
+      },
+      "GET /editorial": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.001
+      },
+      "GET /analyze": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.001
+      },
+      "GET /about": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.003
+      },
+      "GET /privacy": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.002
+      },
+      "GET /performance": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.003
+      },
+      "GET /history": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.025
+      },
+      "GET /api/health": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.0
+      },
+      "GET /api/metrics": {
+        "status_code": 200,
+        "expected": 200,
+        "pass": true,
+        "latency_sec": 0.0
+      },
+      "GET /non_existent_page_404": {
+        "status_code": 404,
+        "expected": 404,
+        "pass": true,
+        "latency_sec": 0.001
+      },
+      "POST /api/analyze/text": {
+        "status_code": 400,
+        "expected": 400,
+        "pass": true,
+        "latency_sec": 0.001
+      },
+      "GET /report/pdf/<id>": {
+        "status_code": 200,
+        "pass": true,
+        "content_length": 4031
+      }
+    },
+    "phase8_security": {
+      "SSRF: http://127.0.0.1/admin": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: http://localhost:5002/": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: http://169.254.169.254/latest/meta-data/": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: http://192.168.1.1/router": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: http://10.0.0.1/internal": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: file:///etc/passwd": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: ftp://malicious.org/file": {
+        "allowed": false,
+        "expected": false,
+        "pass": true
+      },
+      "SSRF: https://www.bbc.com/news": {
+        "allowed": true,
+        "expected": true,
+        "pass": true
+      },
+      "SSRF: https://www.reuters.com/article": {
+        "allowed": true,
+        "expected": true,
+        "pass": true
+      },
+      "Traversal: ../../etc/passwd": {
+        "cleaned": "etc_passwd",
+        "safe": true
+      },
+      "Traversal: ../app.py": {
+        "cleaned": "app.py",
+        "safe": true
+      },
+      "Traversal: ..\\..\\windows\\system32": {
+        "cleaned": "windowssystem32",
+        "safe": true
+      },
+      "Traversal: safe_file.pdf": {
+        "cleaned": "safe_file.pdf",
+        "safe": true
+      },
+      "security_headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-XSS-Protection": "1; mode=block",
+        "Content-Security-Policy": true
+      }
+    },
+    "phase9_performance": {
+      "homepage_GET": {
+        "median_sec": 0.0004,
+        "p95_sec": 0.0006,
+        "samples": [
+          0.0003,
+          0.0003,
+          0.0004,
+          0.0006,
+          0.0006
+        ]
+      },
+      "workbench_GET": {
+        "median_sec": 0.0005,
+        "p95_sec": 0.0006,
+        "samples": [
+          0.0003,
+          0.0004,
+          0.0005,
+          0.0006,
+          0.0006
+        ]
+      },
+      "model_inference_only": {
+        "median_sec": 0.0,
+        "p95_sec": 0.0015,
+        "samples": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0015
+        ]
+      },
+      "health_api": {
+        "median_sec": 0.0002,
+        "p95_sec": 0.0003,
+        "samples": [
+          0.0001,
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0003
+        ]
+      }
+    }
+  },
+  "metrics": {},
+  "findings": [],
+  "model_stats": {},
+  "performance": {}
+}

@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+
+{% block title %}TruthLens — The News Credibility Lab & Investigative Verification{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Newsreader (Editorial Serif) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/editorial-home.css') }}">
+
+<div class="editorial-page">
+
+  <!-- ======================================================================
+       SECTION 01: HERO — LOOK BEYOND THE HEADLINE
+       ====================================================================== -->
+  <section class="ed-section ed-hero-section" id="hero" aria-labelledby="hero-title">
+    <div class="ed-container ed-container-wide">
+      <div class="ed-hero-grid">
+        
+        <!-- Left Column: Editorial Masthead & Copy -->
+        <div class="ed-hero-content">
+          <div class="ed-hero-masthead">
+            <span class="ed-hero-masthead-pulse" aria-hidden="true"></span>
+            <span class="ed-hero-masthead-text">The News Credibility Lab</span>
+          </div>
+
+          <h1 id="hero-title" class="ed-hero-title">
+            Every story deserves a <span class="ed-hero-title-italic">closer look.</span>
+          </h1>
+
+          <p class="ed-hero-lead">
+            Explore the claims behind the headlines. Examine credibility signals, understand context, and approach information with a more critical eye.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="ed-hero-cta-group">
+            <a href="{{ url_for('index') }}" class="ed-btn-primary" id="heroAnalyzeCta">
+              <span>Analyze News</span>
+              <span class="ed-btn-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="#perspective" class="ed-btn-secondary" id="heroExploreCta">
+              <span>Explore How It Works</span>
+              <span aria-hidden="true">&darr;</span>
+            </a>
+          </div>
+
+          <!-- Editorial Format Descriptor -->
+          <div class="ed-hero-descriptor" aria-label="Supported verification dimensions">
+            <span>Text</span>
+            <span>Documents</span>
+            <span>Images</span>
+            <span>Multilingual Analysis</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Bespoke 3D Layered Newsprint & Evidence Composition -->
+        <div class="ed-hero-stage-wrap" aria-hidden="true">
+          <div class="ed-hero-3d-stage">
+            
+            <!-- Layer 1: Base Newsprint Gazette -->
+            <div class="ed-sheet-base">
+              <div class="ed-newsprint-header">
+                <span class="ed-newsprint-masthead">The Investigative Gazette</span>
+                <span class="ed-newsprint-date">Vol. CXIV &middot; Global Edition</span>
+              </div>
+              <div class="ed-newsprint-columns">
+                <div class="ed-newsprint-col">
+                  <p>Inquiries into reported geopolitical and monetary assertions require systematic primary source authentication across wire transmissions.</p>
+                  <p>Archival records indicate cross-border statements frequently lose vital nuance during rapid distribution across social aggregators.</p>
+                </div>
+                <div class="ed-newsprint-col">
+                  <p>Independent verification remains the cornerstone of democratic consensus and journalistic accountability in an era of automated synthesis.</p>
+                  <p>Public interest demands scrutiny of factual provenance rather than passive acceptance of stylistic conviction.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Layer 2: Offset Evidence Dossier Sheet (Premium Broadsheet Newspaper) -->
+            <div class="ed-sheet-evidence" id="newspaperDisplay">
+              <!-- Broadsheet Masthead Header -->
+              <div class="ed-newspaper-masthead-wrap">
+                <div class="ed-newspaper-top-bar">
+                  <span class="ed-newspaper-edition">National Edition &bull; Vol. CXXVIII</span>
+                  <span class="ed-evidence-case-id">Ref: 2026-TL-EVID</span>
+                </div>
+                <div class="ed-newspaper-masthead">
+                  The Daily Dispatch
+                </div>
+                <div class="ed-newspaper-subbar">
+                  <span>Special Investigative Wire</span>
+                  <span class="ed-newspaper-ornament">&#10022;</span>
+                  <span>Capitol Bureau &bull; Archival Record</span>
+                </div>
+              </div>
+
+              <!-- Newspaper Article Body -->
+              <div class="ed-newspaper-article">
+                <div class="ed-evidence-claim-preview">
+                  “Bipartisan infrastructure agreement reaches floor consensus after <span class="ed-highlight-line">monetary audit confirms funding.</span>”
+                </div>
+
+                <div class="ed-newspaper-deck">
+                  Congressional committee review corroborates statutory allocations ahead of scheduled floor voting.
+                </div>
+
+                <div class="ed-newspaper-body-cols">
+                  <div class="ed-newspaper-col">
+                    <p><span class="ed-newspaper-dateline">WASHINGTON &mdash;</span> Committee managers confirmed an agreement following fiscal verification across departmental records.</p>
+                  </div>
+                  <div class="ed-newspaper-col">
+                    <p>Independent wire reports indicate legislative provisions remain aligned with documented budget ceilings.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wire Concordance & Provenance Footer -->
+              <div class="ed-evidence-annotation-row">
+                <div class="ed-evidence-badge">
+                  <span class="ed-evidence-badge-dot"></span>
+                  <span>Primary Wire Match</span>
+                </div>
+                <span class="ed-evidence-meta-note">96% Source Concordance</span>
+              </div>
+            </div>
+
+            <!-- Layer 3: Precision Loupe / Inspection Reticle -->
+            <div class="ed-loupe-widget">
+              <div class="ed-loupe-reticle">
+                <div class="ed-loupe-center-dot"></div>
+                <span class="ed-loupe-zoom-text">Inspection Mode</span>
+              </div>
+            </div>
+
+            <!-- Layer 4: Floating Verification Stamp -->
+            <div class="ed-floating-tag">
+              <span>Authenticity Trace</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="ed-divider-full" aria-hidden="true">
+
+  <!-- ======================================================================
+       EDITORIAL PERSPECTIVE: A CLOSER LOOK AT INFORMATION
+       ====================================================================== -->
+  <section class="ed-section ed-perspective-section ed-reveal" id="perspective" aria-labelledby="perspective-title">
+    <div class="ed-container">
+      
+      <div class="ed-section-meta">
+        <span class="ed-section-num">02 / Perspective</span>
+        <span class="ed-section-tag">Information Dynamics</span>
+        <span class="ed-section-rule" aria-hidden="true"></span>
+      </div>
+
+      <div class="ed-perspective-grid">
+        
+        <!-- Left: Large Editorial Statement -->
+        <div class="ed-perspective-content">
+          <h2 id="perspective-title" class="ed-editorial-quote">
+            “A convincing headline is not the same as convincing evidence.”
+          </h2>
+
+          <p class="ed-perspective-text">
+            Modern misinformation rarely presents itself as an obvious fiction. It flourishes in the quiet space between partial facts, omitted caveats, and simulated authority. A headline may be grammatically persuasive and emotionally resonant while remaining fundamentally unsupported by primary records.
+          </p>
+
+          <p class="ed-perspective-text">
+            Credibility analysis requires more than binary categorization: it demands looking at who reported it, what independent sources confirm it, and what crucial nuances were discarded in the pursuit of virality.
+          </p>
+
+          <div class="ed-pullquote-box">
+            <p class="ed-pullquote-text">
+              “Automated models highlight patterns; rigorous fact-checking demands evidence, context, and intellectual humility.”
+            </p>
+            <span class="ed-pullquote-author">TruthLens Editorial Standards</span>
+          </div>
+        </div>
+
+        <!-- Right: Custom Evidence Ledger Graphic -->
+        <div class="ed-ledger-wrap" aria-hidden="true">
+          <div class="ed-ledger-card">
+            
+            <div class="ed-ledger-header">
+              <span class="ed-ledger-title">Documentary Audit Ledger</span>
+              <span class="ed-ledger-badge">Archive Record</span>
+            </div>
+
+            <table class="ed-ledger-comparison-table">
+              <thead>
+                <tr>
+                  <th>Reported Headline</th>
+                  <th>Documentary Evidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="ed-col-headline">“Global Treaty Ratified Overnight”</td>
+                  <td class="ed-col-evidence">Pending Senate floor committee vote; no ratification enacted.</td>
+                </tr>
+                <tr>
+                  <td class="ed-col-headline">“5G Chips Found in Currency Notes”</td>
+                  <td class="ed-col-evidence">Fact-checked false; security threads lack active circuits.</td>
+                </tr>
+                <tr>
+                  <td class="ed-col-headline">“Central Bank Lowers Interest Rates”</td>
+                  <td class="ed-col-evidence">Verified by official press briefing &amp; gazette publication.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="ed-ledger-footer">
+              <span>Primary Wire Correlation: High</span>
+              <span class="ed-ledger-status-tag">Audited &amp; Logged</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="ed-divider-full" aria-hidden="true">
+
+  <!-- ======================================================================
+       FINAL EDITORIAL STATEMENT & CLOSING CTA
+       ====================================================================== -->
+  <section class="ed-section ed-closing-section ed-reveal" id="closing" aria-labelledby="closing-title">
+    <div class="ed-container ed-container-narrow">
+      <div class="ed-closing-box">
+        
+        <span class="ed-closing-tag">The Newsroom Workbench</span>
+
+        <h2 id="closing-title" class="ed-closing-title">
+          “Pause at the headline.<br>Look closer at the evidence.”
+        </h2>
+
+        <p class="ed-closing-subtitle">
+          Start with a claim. Explore the analysis. Make room for context.
+        </p>
+
+        <div class="ed-closing-actions">
+          <a href="{{ url_for('index') }}" class="ed-btn-closing-primary" id="closingAnalyzeCta">
+            <span>Analyze News</span>
+            <span class="ed-btn-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <p class="ed-closing-note">
+          Opens the verification workbench &middot; Zero login required
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       REFINED EDITORIAL FOOTER
+       ====================================================================== -->
+  <footer class="ed-footer" role="contentinfo">
+    <div class="ed-container">
+      
+      <div class="ed-footer-top">
+        <div class="ed-footer-brand">
+          <div class="ed-footer-brand-title">
+            <svg viewBox="0 0 32 32" fill="none" width="22" height="22" aria-hidden="true">
+              <circle cx="14" cy="14" r="10" stroke="#102A43" stroke-width="2.5" />
+              <path d="M21.5 21.5L28.5 28.5" stroke="#147D78" stroke-width="3" stroke-linecap="round" />
+              <path d="M10 14L13 17L18.5 11" stroke="#147D78" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>TruthLens</span>
+          </div>
+          <p class="ed-footer-tagline">
+            Know the Facts. Trust the News. An investigative credibility workbench engineered for critical readers, journalists, and researchers.
+          </p>
+        </div>
+
+        <div class="ed-footer-nav-grid">
+          <div>
+            <div class="ed-footer-nav-col-title">Navigation</div>
+            <ul class="ed-footer-links">
+              <li><a href="{{ url_for('home') }}">Home</a></li>
+              <li><a href="{{ url_for('index') }}">Check News</a></li>
+              <li><a href="{{ url_for('history') }}">Analysis History</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="ed-footer-nav-col-title">Methodology</div>
+            <ul class="ed-footer-links">
+              <li><a href="{{ url_for('about') }}">About &amp; Principles</a></li>
+              <li><a href="{{ url_for('performance') }}">Model Metrics</a></li>
+              <li><a href="{{ url_for('privacy') }}">Privacy &amp; Terms</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="ed-footer-nav-col-title">Languages</div>
+            <ul class="ed-footer-links">
+              <li><a href="{{ url_for('index') }}">English</a></li>
+              <li><a href="{{ url_for('index') }}">Malayalam (മലയാളം)</a></li>
+              <li><a href="{{ url_for('index') }}">Hindi (हिन्दी)</a></li>
+              <li><a href="{{ url_for('index') }}">Tamil (தமிழ்)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advisory Disclaimer -->
+      <div class="ed-footer-disclaimer-box">
+        <svg class="ed-disclaimer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <p class="ed-disclaimer-text">
+          <strong>Advisory Note:</strong> TruthLens produces probabilistic credibility assessments and retrieves evidence from indexed reporting. Machine-learning models may make errors; predictions should always be verified against primary sources and official documentation.
+        </p>
+      </div>
+
+      <div class="ed-footer-bottom">
+        <span>&copy; 2026 TruthLens Editorial Lab. All rights reserved.</span>
+        <span>Version 2.4.0 &middot; Multilingual &middot; Independent Journalism Standards</span>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/editorial-home.js') }}"></script>
+{% endblock %}
+
+{% block footer %}{% endblock %}

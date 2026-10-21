@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}TruthLens — Know the Facts. Trust the News.{% endblock %}
+
+{% block content %}
+<div class="site-container">
+  <div class="clean-home-wrapper">
+    
+    <!-- Brand Mark & Minimal Hero -->
+    <div class="home-brand-hero">
+      <div class="home-logo-wrap">
+        <svg class="home-lens-svg" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="10" stroke="#102A43" stroke-width="2.5" />
+          <path d="M21.5 21.5L28.5 28.5" stroke="#147D78" stroke-width="3" stroke-linecap="round" />
+          <path d="M10 14L13 17L18.5 11" stroke="#147D78" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <h1 class="home-title bottom-up-letters" aria-label="TruthLens" data-delay="0" data-stagger="88">TruthLens</h1>
+      <p class="home-tagline">Know the Facts. Trust the News.</p>
+    </div>
+
+    <!-- Section Heading -->
+    <div class="verify-methods-header">
+      <h2 class="verify-methods-title">How would you like to verify the news?</h2>
+      <p class="verify-methods-sub">Choose a format below to verify headlines, documents, or article screenshots.</p>
+    </div>
+
+    <!-- 3 Clean, Selectable Input Method Tabs -->
+    <div class="input-tabs-nav" role="tablist" aria-label="News Verification Methods">
+      <button type="button" class="tab-btn active" role="tab" id="tab-text" aria-selected="true" aria-controls="panel-text" data-tab="text">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        <span>Text</span>
+      </button>
+
+      <button type="button" class="tab-btn" role="tab" id="tab-pdf" aria-selected="false" aria-controls="panel-pdf" data-tab="pdf">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <path d="M9 15h2a2 2 0 0 0 0-4H9v6"></path>
+        </svg>
+        <span>PDF</span>
+      </button>
+
+      <button type="button" class="tab-btn" role="tab" id="tab-image" aria-selected="false" aria-controls="panel-image" data-tab="image">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+        <span>Image</span>
+      </button>
+    </div>
+
+    <!-- Main Input Card Container -->
+    <div class="home-input-card">
+      
+      <!-- Feedback / Alert Banner inside card -->
+      <div id="methodAlert" class="method-alert-box" style="display: none;" role="alert">
+        <span id="methodAlertMessage"></span>
+      </div>
+
+      <!-- PANEL A: TEXT -->
+      <div id="panel-text" class="tab-panel active" role="tabpanel" aria-labelledby="tab-text">
+        <form action="{{ url_for('check_news_route') }}" method="POST" id="newsCheckForm">
+          <input type="hidden" name="input_type" value="text">
+          <div class="input-container">
+            <textarea 
+              id="newsInput" 
+              name="news_input" 
+              class="main-news-textarea" 
+              placeholder="Paste a headline, news article, or claim here…" 
+              rows="5"
+              required
+              aria-label="Paste a headline, news article, or claim here"
+            ></textarea>
+          </div>
+
+          <div class="input-helper-bar">
+            <span class="input-option-hint">Paste text or enter a URL</span>
+            <span id="charCount" class="char-count">0 characters</span>
+          </div>
+
+          <div class="home-action-row">
+            <button type="submit" class="btn-check-news" id="checkNewsBtn">
+              Check News
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- PANEL B: PDF -->
+      <div id="panel-pdf" class="tab-panel" role="tabpanel" aria-labelledby="tab-pdf" style="display: none;">
+        <div class="upload-dropzone" id="pdfDropzone" tabindex="0" role="button" aria-label="Drop or browse PDF">
+          <input type="file" id="pdfFileInput" class="file-input-hidden" accept=".pdf,application/pdf">
+          
+          <div class="dropzone-empty" id="pdfDropzoneEmpty">
+            <div class="dropzone-icon-wrap">
+              <svg class="dropzone-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <polyline points="9 15 12 12 15 15"></polyline>
+              </svg>
+            </div>
+            <p class="dropzone-primary-text">Drag and drop your PDF here, or</p>
+            <button type="button" class="btn-browse" id="pdfBrowseBtn">Browse Files</button>
+            <p class="dropzone-hint">Supports PDF reports and articles up to 30 MB (max 15 pages)</p>
+          </div>
+
+          <div class="dropzone-selected" id="pdfDropzoneSelected" style="display: none;">
+            <div class="file-info-card">
+              <div class="file-badge-type">PDF</div>
+              <div class="file-details">
+                <span class="file-name" id="pdfFileName">document.pdf</span>
+                <span class="file-size" id="pdfFileSize">0 KB</span>
+              </div>
+              <button type="button" class="btn-remove-file" id="pdfRemoveBtn" title="Remove PDF" aria-label="Remove PDF">&times;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional Review Section for PDF if user wants to inspect -->
+        <div class="review-box" id="pdfReviewBox" style="display: none;">
+          <div class="review-header">
+            <span class="review-label">Extracted PDF Text</span>
+            <span class="review-badge">Editable</span>
+          </div>
+          <textarea id="pdfExtractedText" class="main-news-textarea review-textarea" rows="5" placeholder="Extracted article text will appear here..."></textarea>
+          <div class="review-helper-bar">
+            <span class="review-hint">You can edit the extracted text before verifying</span>
+            <span id="pdfCharCount" class="char-count">0 characters</span>
+          </div>
+        </div>
+
+        <div class="home-action-row" style="margin-top: 18px;">
+          <button type="button" class="btn-check-news" id="pdfVerifyBtn" disabled>
+            Extract &amp; Verify PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL C: IMAGE -->
+      <div id="panel-image" class="tab-panel" role="tabpanel" aria-labelledby="tab-image" style="display: none;">
+        <div class="upload-dropzone" id="imageDropzone" tabindex="0" role="button" aria-label="Drop or browse image">
+          <input type="file" id="imageFileInput" class="file-input-hidden" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+          
+          <div class="dropzone-empty" id="imageDropzoneEmpty">
+            <div class="dropzone-icon-wrap">
+              <svg class="dropzone-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <p class="dropzone-primary-text">Drag and drop news screenshot or clipping, or</p>
+            <button type="button" class="btn-browse" id="imageBrowseBtn">Browse Files</button>
+            <p class="dropzone-hint">Supports JPG, JPEG, PNG, and WEBP (max 30 MB)</p>
+          </div>
+
+          <div class="dropzone-selected" id="imageDropzoneSelected" style="display: none;">
+            <div class="media-preview-container">
+              <img id="imagePreview" class="media-thumb-img" alt="Uploaded news preview">
+            </div>
+            <div class="file-info-card">
+              <div class="file-details">
+                <span class="file-name" id="imageFileName">screenshot.png</span>
+                <span class="file-size" id="imageFileSize">0 KB</span>
+              </div>
+              <button type="button" class="btn-remove-file" id="imageRemoveBtn" title="Remove image" aria-label="Remove image">&times;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandatory User Review / Edit Section for Image OCR -->
+        <div class="review-box" id="imageReviewBox" style="display: none;">
+          <div class="review-header">
+            <span class="review-label">OCR Extracted Text &mdash; Review or edit before verification:</span>
+            <span class="review-badge">Review &amp; Edit</span>
+          </div>
+          <textarea id="imageExtractedText" class="main-news-textarea review-textarea" rows="5" placeholder="OCR text will appear here for your review..."></textarea>
+          <div class="review-helper-bar">
+            <span class="review-hint">Verify headline and text accuracy before checking credibility</span>
+            <span id="imageCharCount" class="char-count">0 characters</span>
+          </div>
+        </div>
+
+        <div class="home-action-row" style="margin-top: 18px;">
+          <button type="button" class="btn-check-news" id="imageVerifyBtn" disabled>
+            Extract Text with OCR
+          </button>
+        </div>
+      </div>
+
+      <!-- Hidden Form for Final Submission of Reviewed Text -->
+      <form id="reviewedVerificationForm" action="{{ url_for('check_news_route') }}" method="POST" style="display: none;">
+        <input type="hidden" name="news_input" id="finalNewsInput">
+        <input type="hidden" name="input_type" id="finalInputType">
+        <input type="hidden" name="article_title" id="finalArticleTitle">
+      </form>
+
+      <!-- Simple Verification Line -->
+      <div class="home-footer-line">
+        Verify before you believe.
+      </div>
+    </div>
+
+    <!-- Clean, Simple Loading Animation with Real-Time Progress Messages -->
+    <div id="simpleLoader" class="simple-loader-overlay" style="display: none;" role="status" aria-live="polite">
+      <div class="minimal-spinner"></div>
+      <p class="loader-text" id="loaderStatusText">Checking news against verified sources...</p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

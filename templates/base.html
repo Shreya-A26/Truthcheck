@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TruthLens — Simple, credible news verification. Know the facts. Trust the news.">
+  <title>{% block title %}TruthLens — Know the Facts. Trust the News.{% endblock %}</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a href="#mainContent" class="skip-to-content">Skip to content</a>
+
+  <!-- Minimal Header -->
+  <header class="site-header" role="banner">
+    <div class="site-container header-inner">
+      <a href="{{ url_for('home') }}" class="brand-link" aria-label="TruthLens Home">
+        <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="10" stroke="#102A43" stroke-width="2.5" />
+          <path d="M21.5 21.5L28.5 28.5" stroke="#147D78" stroke-width="3" stroke-linecap="round" />
+          <path d="M10 14L13 17L18.5 11" stroke="#147D78" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="brand-name">TruthLens</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint in ['home'] %}active{% endif %}">Home</a>
+        <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint in ['index', 'analyze_workspace'] %}active{% endif %}">Check News</a>
+        <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Flash Alerts -->
+  <div class="site-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages" style="margin-top: 16px;">
+          {% for category, message in messages %}
+            <div class="alert-box" role="alert">
+              <span>{{ message }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Content -->
+  <main id="mainContent">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  <!-- Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-container footer-content">
+      <div class="footer-left">
+        <strong>TruthLens</strong> &mdash; Know the Facts. Trust the News.
+      </div>
+      <div class="footer-right">
+        <a href="{{ url_for('index') }}">Check News</a>
+        <a href="{{ url_for('about') }}">About & Methodology</a>
+        <a href="{{ url_for('privacy') }}">Privacy & Terms</a>
+      </div>
+    </div>
+  </footer>
+  {% endblock %}
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
