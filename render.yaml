@@ -1,0 +1,28 @@
+# Render Blueprint Configuration for TruthLens Web Service
+services:
+  - type: web
+    name: truthlens
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ENABLE_MULTILINGUAL
+        value: "true"
+      - key: TRANSLATION_TIMEOUT
+        value: "5"
+
+    # Persistent Disk configuration (Uncomment when upgrading to Starter plan for persistent SQLite history)
+    # disk:
+    #   name: truthlens-storage
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # envVars:
+    #   - key: DATABASE_PATH
+    #     value: /var/data/truthlens.db
+    #   - key: UPLOAD_FOLDER
+    #     value: /var/data/uploads

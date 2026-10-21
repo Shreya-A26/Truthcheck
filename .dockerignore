@@ -1,0 +1,49 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Git & IDE
+.git/
+.gitignore
+.DS_Store
+.idea/
+.vscode/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+tests/
+
+# Node dependencies (installed inside container via npm ci)
+node_modules/
+npm-debug.log*
+
+# Local Backups, Scratch & Logs
+scratch/
+backup_ocr_repair/
+backup_qa_audit/
+*.log
+
+# Local secrets & instance runtime data
+.env
+instance/truthlens.db
+instance/uploads/*
+!instance/uploads/.gitkeep
+
+# Legacy model artifacts
+models/model_v2.pkl
+models/vector_v2.pkl
+
+# Documentation & Reports
+*.md
+qa_audit_results.json
